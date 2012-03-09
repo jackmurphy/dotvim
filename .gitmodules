@@ -186,3 +186,6 @@
 	path = bundle/snipmate-snippets
 	url = git@github.com:smt/snipmate-snippets.git
 	ignore = untracked
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
