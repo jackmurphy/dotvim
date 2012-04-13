@@ -166,10 +166,6 @@
 	path = bundle/jade.vim
 	url = git://github.com/vim-scripts/jade.vim.git
 	ignore = untracked
-[submodule "bundle/delimitMate.git"]
-	path = bundle/delimitMate.git
-	url = git://github.com/Raimondi/delimitMate.git
-	ignore = untracked
 [submodule "bundle/ctrlp.vim"]
 	path = bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim.git
