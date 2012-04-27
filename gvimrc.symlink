@@ -49,20 +49,15 @@ if has("gui_macvim")
     map <D-/> <plug>NERDCommenterToggle<CR>
 
 
-    " Command-][ to increase/decrease indentation
-    vmap <D-]> >gv
-    vmap <D-[> <gv
-
-
-    " Command-e for ConqueTerm
-    map <D-e> :call StartTerm()<CR>
-
-
-    " ConqueTerm wrapper
-    function! StartTerm()
-        execute 'ConqueTerm bash --login'
-        " setlocal listchars=tab:\ \
-    endfunction
+    if &diff
+        colors greens
+        map <Leader>a :GitAdd<CR>
+    else
+        colors badwolf
+        autocmd VimEnter * NERDTree
+        autocmd VimEnter * wincmd p
+        map <Leader>a :NERDTreeFind<CR>
+    endif
 endif
 
 

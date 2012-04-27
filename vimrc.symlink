@@ -6,6 +6,10 @@ set nocompatible        " Don't sacrifice anything for Vi compatibility
 
 " pathogen.vim lets us keep plugins etc in their own folders under ~/.vim/bundle
 filetype off            " Turn off before calling pathogen, then on again for ftdetect files
+
+"let g:pathogen_disabled = []
+"extremely annoying quote matching behavior
+
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 filetype plugin on      " Load plugin settings for the detected filetype
@@ -13,17 +17,16 @@ filetype indent on      " Load indent settings for the detected filetype
 
 set encoding=utf-8      " Always use UTF-8 by default
 
-let mapleader=","       " lead with ,
-let g:mapleader=","     " ...and again
-
 set timeoutlen=400      " Timeout between key command combos
 
 set magic               " Set magic on, for regular expressions
 
 
-" Source vimrc on save
 if has("autocmd")
+    " Source vimrc on save
     au BufWritePost .vimrc source $MYVIMRC
+    " Fix yank
+    map Y y$
 endif
 
 " Let's make it easy to edit this file (mnemonic for the key sequence is 'e'dit 'v'imrc)
@@ -32,14 +35,10 @@ nmap <silent> <Leader>ev :e $MYVIMRC<cr>
 " And to source this file as well (mnemonic for the key sequence is 's'ource 'v'imrc)
 nmap <silent> <Leader>sv :so $MYVIMRC<cr>
 
+let g:pymode_lint_write = 0
 
-" Fix yank
-map Y y$
-
-
-
-
-
+nnoremap <D-y> "*y
+nnoremap <D-Y> "*Y
 
 " ----------------------------------------------------------------------------
 " UI
@@ -77,7 +76,7 @@ set nostartofline       " Don't jump to start of line when scrolling
 
 set background=dark
 
-color badwolf           " Default terminal color scheme
+colorscheme badwolf           " Default terminal color scheme
 
 
 
@@ -238,6 +237,8 @@ nmap <Leader>pp :set invpaste<CR>
 " Toggle text wrapping
 nmap <Leader>w :set invwrap<CR>
 
+vmap > >gv
+vmap < <gv
 
 " Strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
@@ -279,7 +280,7 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 " inoremap <Down> <C-o>gj
 " inoremap <Up> <C-o>gk
-
+map <Leader>w <C-w>
 
 " Unimpaired -- bubble single and multiple lines
 nmap <C-Up> [e
@@ -333,7 +334,7 @@ if has("autocmd")
 
 
     "" Python
-    au FileType python setlocal ts=4 textwidth=79              " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+    au FileType python setlocal ts=4                            " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 
 
     "" PHP
@@ -395,6 +396,7 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+map <Leader>p :let @* = expand("%")<CR>
 
 
 
@@ -421,10 +423,7 @@ let g:bufExplorerSortBy='extension'
 " git://github.com/vim-scripts/bufkill.vim.git
 
 " git://github.com/kien/ctrlp.vim.git
-" let g:ctrlp_map = '<C-Space>'
-map <C-Space> :CtrlP<CR>
-map <D-t> :CtrlP<CR>
-imap <D-t> <Esc>:CtrlP<CR>
+let g:ctrlp_map = '<D-t>'
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_mru_files = 1
 
@@ -476,7 +475,7 @@ nmap <Space>d :NERDTreeToggle<CR>
 nmap <Space>D :NERDTreeFind<CR>
 
 " NERDTree Ignore filetypes
-let NERDTreeIgnore=['\.rbc$', '\~$']
+let NERDTreeIgnore=['\.rbc$', '\.pyc$', '\~$']
 " NERDTree toggle
 map <Leader>nt :NERDTreeToggle<CR>
 " Project Tree
