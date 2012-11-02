@@ -10,7 +10,7 @@ filetype off            " Turn off before calling pathogen, then on again for ft
 "let g:pathogen_disabled = []
 "extremely annoying quote matching behavior
 
-silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#infect()
 silent! call pathogen#helptags()
 filetype plugin on      " Load plugin settings for the detected filetype
 filetype indent on      " Load indent settings for the detected filetype
@@ -20,7 +20,6 @@ set encoding=utf-8      " Always use UTF-8 by default
 set timeoutlen=400      " Timeout between key command combos
 
 set magic               " Set magic on, for regular expressions
-
 
 if has("autocmd")
     " Source vimrc on save
@@ -39,6 +38,7 @@ let g:pymode_lint_write = 0
 
 nnoremap <D-y> "*y
 nnoremap <D-Y> "*Y
+vmap <D-y> "*y
 
 " ----------------------------------------------------------------------------
 " UI
@@ -613,6 +613,7 @@ let g:snips_author = 'Stephen Tudor'
 "let g:snips_trigger_key = '<F12>'
 
 " git://github.com/kogakure/vim-sparkup.git
+let g:sparkupExecuteMapping = '<c-e>'
 let g:sparkupNextMapping = '<c-;>'
 
 " git://github.com/tpope/vim-speeddating.git
