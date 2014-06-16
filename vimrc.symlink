@@ -426,6 +426,10 @@ let g:bufExplorerSortBy='extension'
 let g:ctrlp_map = '<D-t>'
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_mru_files = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$\|\.pip_download_cache$\|compressed$\|compiled$\|node_modules$\|\.venv$'
+  \ }
+
 
 " git://github.com/kchmck/vim-coffee-script.git
 
@@ -461,8 +465,7 @@ nnoremap <F7> :GundoToggle<CR>
 " git://github.com/vim-scripts/jQuery.git
 
 " git://github.com/wookiehangover/jshint.vim.git
-let g:JSLintHighlightErrorLine = 0
-map <Leader>l :JSLintToggle<CR>
+"let JSHintUpdateWriteOnly=1
 
 " git://github.com/tpope/vim-liquid.git
 " git://github.com/gmarik/vim-markdown.git
